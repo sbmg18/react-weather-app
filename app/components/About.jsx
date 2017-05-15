@@ -4,7 +4,8 @@ export default class About extends Component {
     render() {
         return (
             <div>
-                About
+                <h3>About page</h3>
+                <p>This is about page.</p>
             </div>
         );
     }
