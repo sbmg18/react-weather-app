@@ -1,15 +1,28 @@
 import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Redirect } from 'react-router-dom';
 
 export default class Nav extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            location: ""
+            location: "",
         };
         this.onChangeLocation = this.onChangeLocation.bind(this);
         this.onSubmitForm = this.onSubmitForm.bind(this);
+    }
+
+    onSubmitForm(evt) {
+        evt.preventDefault();
+        window.history.pushState(null, null, "/");
+        var location = this.state.location;
+        if (location.length > 0) {
+            window.location.hash = `?location=${location}`;
+            this.setState({
+                location: ""
+            })
+            evt.target.reset();
+        }
     }
 
     onChangeLocation(evt) {
@@ -19,13 +32,10 @@ export default class Nav extends Component {
         });
     }
 
-    onSubmitForm(evt) {
-        evt.preventDefault();
-        alert(this.state.location);
-        evt.target.reset();
-    }
-
     render() {
+
+        var location = this.state.location;
+
         return (
             <div className="top-bar">
                 <div className="top-bar-left">
@@ -38,8 +48,8 @@ export default class Nav extends Component {
                 <div className="top-bar-right">
                     <form onSubmit={this.onSubmitForm}>
                         <ul className="menu">
-                            <li><input onChange={this.onChangeLocation} type="search" placeholder="Enter the location" /></li>
-                            <li><button disabled={this.state.location === ""} type="submit" className="button">Get Weather</button></li>
+                            <li><input onChange={this.onChangeLocation} type="text" placeholder="Enter the location" /></li>
+                            <li><button disabled={!location} type="submit" className="button primary">Get Weather</button></li>
                         </ul>
                     </form>
                 </div>
@@ -47,11 +57,3 @@ export default class Nav extends Component {
         );
     }
 }
-
-var old = (
-    <div>
-        <NavLink activeClassName="active" activeStyle={{ color: 'blue' }} exact to="/">Weather</NavLink>
-        <NavLink activeClassName="active" activeStyle={{ color: 'red' }} to="/about">About</NavLink>
-        <NavLink activeClassName="active" activeStyle={{ color: 'green' }} to="/examples">Examples</NavLink>
-    </div>
-);

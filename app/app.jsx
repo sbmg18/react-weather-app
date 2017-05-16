@@ -16,7 +16,7 @@ ReactDOM.render(
         <div>
             <Route path="/" component={Main} />
             <div className="row">
-                <div className="columns small-12 medium-6 large-4 small-centered">
+                <div className="columns small-10 medium-6 large-4 small-centered">
                     <Switch>
                         <Route exact path="/" component={Weather} />
                         <Route path="/about" component={About} />

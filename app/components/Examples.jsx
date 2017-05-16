@@ -5,11 +5,11 @@ export default class Examples extends Component {
     render() {
         return (
             <div>
-                <h3>Examples</h3>
-                <p>Here are few example locations to try out...</p>
+                <h1>Examples</h1>
+                <p className="lead">Here are few example locations to try:</p>
                 <ol>
-                    <li><Link to="/?location=Kota">Kota</Link></li>
-                    <li><Link to="/?location=Delhi">Delhi</Link></li>
+                    <li><Link to="/?location=Kota,IN">Kota,IN</Link></li>
+                    <li><Link to="/?location=Delhi,IN">Delhi,IN</Link></li>
                 </ol>
             </div>
         );

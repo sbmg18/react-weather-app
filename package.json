@@ -7,13 +7,13 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
-
   "author": "Shubham Gupta",
   "license": "MIT",
   "dependencies": {
     "axios": "^0.16.1",
     "express": "^4.15.2",
     "prop-types": "^15.5.9",
+    "query-string": "^4.3.4",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
     "react-router-dom": "^4.1.1"

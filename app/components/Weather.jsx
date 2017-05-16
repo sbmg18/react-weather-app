@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import openWeatherMap from 'openWeatherMap';
+import queryString from 'query-string';
 
 const WeatherMessage = ({ temperature, location }) => {
     return (
@@ -62,7 +63,6 @@ export default class Weather extends Component {
         this.state = {
             isLoading: false
         };
-
         this.handleSearch = this.handleSearch.bind(this);
     }
 
@@ -77,7 +77,7 @@ export default class Weather extends Component {
                 temperature: temperature,
                 isLoading: false
             });
-        }, function(err) {
+        }, function (err) {
             alert(err);
             that.setState({
                 isLoading: false
@@ -85,11 +85,33 @@ export default class Weather extends Component {
         });
     }
 
+    searchLocation(location) {
+        if (location && location.length > 0) {
+            this.handleSearch(location);
+            window.history.pushState(null, null, window.location.pathname);
+        }
+    }
+
+    componentWillMount() {
+        var { location } = queryString.parse((window.location.hash).substring(1));
+        this.searchLocation(location);
+    }
+
+    componentDidMount() {
+        var { location } = queryString.parse(this.props.location.search);
+        this.searchLocation(location);
+    }
+
+    componentWillReceiveProps(newProps) {
+        var { location } = queryString.parse((newProps.location.hash).substring(1));
+        this.searchLocation(location);
+    }
+
     render() {
         const { location, temperature, isLoading } = this.state;
         return (
             <div className="text-center">
-                <h3>Get Weather</h3>
+                <h1>Get Weather</h1>
                 <WeatherForm onSearch={this.handleSearch} />
                 {isLoading
                     ? <h3>Loading...</h3>
