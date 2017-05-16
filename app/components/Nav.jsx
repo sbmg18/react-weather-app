@@ -30,7 +30,7 @@ export default class Nav extends Component {
             <div className="top-bar">
                 <div className="top-bar-left">
                     <ul className="menu">
-                        <li><NavLink activeClassName="active" activeStyle={{ fontWeight: 'bold' }} exact to="/">Weather</NavLink></li>
+                        <li className="active"><NavLink activeClassName="active" activeStyle={{ fontWeight: 'bold' }} exact to="/">Weather</NavLink></li>
                         <li><NavLink activeClassName="active" activeStyle={{ fontWeight: 'bold' }} to="/about">About</NavLink></li>
                         <li><NavLink activeClassName="active" activeStyle={{ fontWeight: 'bold' }} to="/examples">Examples</NavLink></li>
                     </ul>
@@ -38,8 +38,8 @@ export default class Nav extends Component {
                 <div className="top-bar-right">
                     <form onSubmit={this.onSubmitForm}>
                         <ul className="menu">
-                            <li><input onChange={this.onChangeLocation} type="search" placeholder="Search Weather" /></li>
-                            <li><button disabled={this.state.location === ""} type="submit" className="button">Search</button></li>
+                            <li><input onChange={this.onChangeLocation} type="search" placeholder="Enter the location" /></li>
+                            <li><button disabled={this.state.location === ""} type="submit" className="button">Get Weather</button></li>
                         </ul>
                     </form>
                 </div>
