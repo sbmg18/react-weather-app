@@ -33,6 +33,9 @@ class WeatherForm extends Component {
         var location = this.state.location;
         if (location.length > 0) {
             this.props.onSearch(location);
+            this.setState({
+                location: ""
+            });
             evt.target.reset();
         }
     }
@@ -42,10 +45,10 @@ class WeatherForm extends Component {
             <div>
                 <form onSubmit={this.onSubmitForm}>
                     <div>
-                        <input onChange={this.onChangeLocation} placeholder="Enter the location" type="text" />
+                        <input autoFocus onChange={this.onChangeLocation} placeholder="Enter the location" type="text" />
                     </div>
                     <div>
-                        <button type="submit">Get Weather</button>
+                        <button disabled={this.state.location === ""} type="submit">Get Weather</button>
                     </div>
                 </form>
             </div>
