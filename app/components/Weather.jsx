@@ -48,7 +48,7 @@ class WeatherForm extends Component {
                         <input autoFocus onChange={this.onChangeLocation} placeholder="Enter the location" type="text" />
                     </div>
                     <div>
-                        <button disabled={this.state.location === ""} type="submit">Get Weather</button>
+                        <button className="button primary expanded hollow" disabled={this.state.location === ""} type="submit">Get Weather</button>
                     </div>
                 </form>
             </div>
@@ -88,7 +88,8 @@ export default class Weather extends Component {
     render() {
         const { location, temperature, isLoading } = this.state;
         return (
-            <div>
+            <div className="text-center">
+                <h3>Get Weather</h3>
                 <WeatherForm onSearch={this.handleSearch} />
                 {isLoading
                     ? <h3>Loading...</h3>
